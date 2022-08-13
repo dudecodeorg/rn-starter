@@ -22,14 +22,14 @@ function HomeScreen() {
 
   return (
     <Body>
-        <View style={styles.container}>
-            <Text>Open up App.tsx1s test to start working on your app {age}!</Text>
-            <StatusBar style="auto" />
-            <Text>Name: {name}</Text>
-            <Text>Last name: {lastName}</Text>
-            <Box />
-            {!loading && <Button title="Send" onPress={handlePres} />}
-        </View>
+      <View style={styles.container}>
+        <MyText>Open up App.tsx1s test to start working on your app {age}!</MyText>
+        <StatusBar style="auto" />
+        <Text>Name: {name}</Text>
+        <Text>Last name: {lastName}</Text>
+        <Box />
+        {!loading && <Button title="Send" onPress={handlePres} />}
+      </View>
     </Body>
   );
 }
@@ -51,7 +51,10 @@ const Box = styled.View`
   height: 130px;
 `;
 
+const MyText = styled.Text`
+  font-family: 'Gilroy-Regular';
+`;
 
 const Body = styled.View`
   flex: 1;
-`
+`;
