@@ -5,7 +5,7 @@
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "jsx": "react-native",
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "strict": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,

@@ -10,11 +10,14 @@
       "jsx": true
     },
     "ecmaVersion": "latest",
-    "sourceType": "module"
+    "sourceType": "module",
+    "project": "./tsconfig.json"
   },
   "plugins": ["react", "react-native"],
   "rules": {
     "semi": 0,
+    "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+    "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
     "react/jsx-filename-extension": ["error", { "extensions": [".ts", ".tsx"] }],
     "no-use-before-define": ["error", { "functions": true, "classes": true, "variables": false }]
   }
