@@ -6,6 +6,7 @@ import { fetchUser } from '../../store/user/user.thunks';
 import { RootState, useAppDispatch } from '../../store';
 import { selectUserAge } from '../../store/user/user.selectors';
 import styled from '../../styles';
+import Icon from '../../components/atoms/Icon';
 
 function HomeScreen() {
   const dispatch = useAppDispatch();
@@ -28,6 +29,7 @@ function HomeScreen() {
         <Text>Name: {name}</Text>
         <Text>Last name: {lastName}</Text>
         <Box />
+        <Icon name="phone" />
         {!loading && <Button title="Send" onPress={handlePres} />}
       </View>
     </Body>
