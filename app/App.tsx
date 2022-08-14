@@ -1,7 +1,6 @@
 import { Provider as ReduxProvider } from 'react-redux';
 import { store } from './store/store';
 import RootStack from './navigation/RootStack';
-import 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ThemeProvider } from 'styled-components';
 import styled, { theme } from './styles';
@@ -9,6 +8,9 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useCallback, useEffect, useState } from 'react';
 import useCustomFonts from './hooks/useCustomFonts';
 import useIconFont from './hooks/useIconFont';
+import { AuthProvider } from './hooks/useAuth';
+
+import 'react-native-gesture-handler';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -44,9 +46,11 @@ export default function App() {
     <SafeAreaProvider>
       <ThemeProvider theme={theme}>
         <ReduxProvider store={store}>
-          <Container onLayout={onLayoutRootView}>
-            <RootStack />
-          </Container>
+          <AuthProvider>
+            <Container onLayout={onLayoutRootView}>
+              <RootStack />
+            </Container>
+          </AuthProvider>
         </ReduxProvider>
       </ThemeProvider>
     </SafeAreaProvider>

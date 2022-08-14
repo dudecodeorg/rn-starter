@@ -1,62 +1,38 @@
-import { Button, StyleSheet, Text, View } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
-import { useSelector } from 'react-redux';
-import { setAge } from '../../store/user/user.slice';
-import { fetchUser } from '../../store/user/user.thunks';
-import { RootState, useAppDispatch } from '../../store';
-import { selectUserAge } from '../../store/user/user.selectors';
+import React from 'react';
+
 import styled from '../../styles';
-import Icon from '../../components/atoms/Icon';
+import useAuth from '../../hooks/useAuth';
+import { useAppDispatch } from '../../store';
+import { loginUser } from '../../store/user/user.thunks';
 
 function HomeScreen() {
   const dispatch = useAppDispatch();
+  const { login } = useAuth();
 
-  const age = useSelector(selectUserAge);
-  const loading = useSelector((s: RootState) => s.user.loading);
-  const name = useSelector((s: RootState) => s.user.name);
-  const lastName = useSelector((s: RootState) => s.user.lastName);
-
-  const handlePres = () => {
-    dispatch(fetchUser());
-    dispatch(setAge(55));
+  const onLoginPress = () => {
+    dispatch(loginUser(login));
   };
 
   return (
-    <Body>
-      <View style={styles.container}>
-        <MyText>Open up App.tsx1s test to start working on your app {age}!</MyText>
-        <StatusBar style="auto" />
-        <Text>Name: {name}</Text>
-        <Text>Last name: {lastName}</Text>
-        <Box />
-        <Icon name="phone" />
-        {!loading && <Button title="Send" onPress={handlePres} />}
-      </View>
-    </Body>
+    <Container>
+      <HelloText>Hello, Dude!</HelloText>
+      <LoginButton onPress={onLoginPress} title="Login" />
+    </Container>
   );
 }
 
 export default HomeScreen;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
-
-const Box = styled.View`
-  background-color: ${({ theme }) => theme.color.blue};
-  width: 130px;
-  height: 130px;
-`;
-
-const MyText = styled.Text`
-  font-family: 'Gilroy-Regular';
-`;
-
-const Body = styled.View`
+const Container = styled.View`
   flex: 1;
+  align-items: center;
+  justify-content: center;
 `;
+
+const HelloText = styled.Text`
+  color: burlywood;
+  font-weight: bold;
+  font-size: 24px;
+`;
+
+const LoginButton = styled.Button``;
