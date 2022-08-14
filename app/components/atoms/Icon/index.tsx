@@ -1,9 +1,6 @@
 import { createIconSetFromIcoMoon } from '@expo/vector-icons';
+import * as selection from '../../../assets/iconmoon/selection.json';
 
-const Icon = createIconSetFromIcoMoon(
-  require('../../../assets/iconmoon/selection.json'),
-  'IcoMoon',
-  'icomoon.ttf'
-);
+const Icon = createIconSetFromIcoMoon(selection, 'IcoMoon', 'icomoon.ttf');
 
 export default Icon;

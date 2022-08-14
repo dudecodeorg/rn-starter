@@ -3,7 +3,13 @@
     "es2021": true,
     "node": true
   },
-  "extends": ["plugin:react/recommended", "airbnb", "airbnb/hooks", "prettier", "prettier/react"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
@@ -13,15 +19,26 @@
     "sourceType": "module",
     "project": "./tsconfig.json"
   },
-  "plugins": ["react", "react-native"],
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
+  },
+  "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
     "semi": 0,
-    "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
-    "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
-    "react/jsx-filename-extension": ["error", { "extensions": [".ts", ".tsx"] }],
+    "no-console": [
+      "error",
+      {
+        "allow": ["warn", "error"]
+      }
+    ],
+    "prettier/prettier": 2,
     "no-use-before-define": ["error", { "functions": true, "classes": true, "variables": false }],
     "@typescript-eslint/no-shadow": ["error"],
     "no-shadow": "off",
-    "arrow-body-style": ["warn"]
+    "arrow-body-style": ["off"],
+    "react/react-in-jsx-scope": "off"
   }
 }

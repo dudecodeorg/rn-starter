@@ -11,12 +11,7 @@
     "noImplicitThis": true,
     "noUnusedLocals": true,
     "sourceMap": true,
-    "lib": [
-      "esnext",
-      "dom"
-    ]
+    "lib": ["esnext", "dom"]
   },
-  "include": [
-    "app"
-  ]
+  "include": ["app"]
 }

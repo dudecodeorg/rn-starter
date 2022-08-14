@@ -14,6 +14,6 @@ const i18n = new I18n({
 i18n.enableFallback = true;
 i18n.locale = getUserLangCode() || '';
 
-export const t = (scope: string, options?: any) => i18n.t(scope, options);
+export const t = (scope: string) => i18n.t(scope);
 
 export const { locale } = i18n;
