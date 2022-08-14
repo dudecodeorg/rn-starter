@@ -19,6 +19,9 @@
     "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
     "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
     "react/jsx-filename-extension": ["error", { "extensions": [".ts", ".tsx"] }],
-    "no-use-before-define": ["error", { "functions": true, "classes": true, "variables": false }]
+    "no-use-before-define": ["error", { "functions": true, "classes": true, "variables": false }],
+    "@typescript-eslint/no-shadow": ["error"],
+    "no-shadow": "off",
+    "arrow-body-style": ["warn"]
   }
 }
