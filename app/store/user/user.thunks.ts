@@ -17,3 +17,7 @@ export const loginUser = createAsyncThunk('user/login', async (loginFn: () => Pr
     console.log('Err');
   }
 });
+
+export const logOutUser = createAsyncThunk('user/logout', async (logOutFn: () => Promise<void>) => {
+  await logOutFn();
+});
