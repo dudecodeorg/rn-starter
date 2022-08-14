@@ -4,27 +4,55 @@ import RootStack from './navigation/RootStack';
 import 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ThemeProvider } from 'styled-components';
-import { theme } from './styles';
-import { useFonts } from 'expo-font';
+import styled, { theme } from './styles';
+import * as SplashScreen from 'expo-splash-screen';
+import { useCallback, useEffect, useState } from 'react';
+import useCustomFonts from './hooks/useCustomFonts';
+import useIconFont from './hooks/useIconFont';
+
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
-  let [fontsLoaded] = useFonts({
-    'Gilroy-Regular': require('./assets/fonts/Gilroy-Regular.ttf'),
-    'Gilroy-SemiBold': require('./assets/fonts/Gilroy-SemiBold.ttf'),
-    'Gilroy-Medium': require('./assets/fonts/Gilroy-Medium.ttf'),
-  });
+  const [appIsReady, setAppIsReady] = useState(false);
 
-  if (!fontsLoaded) {
-    return <></>;
+  useEffect(() => {
+    async function prepare() {
+      try {
+        await useCustomFonts();
+        await useIconFont();
+      } catch (e) {
+        console.warn(e);
+      } finally {
+        setAppIsReady(true);
+      }
+    }
+
+    prepare();
+  }, []);
+
+  const onLayoutRootView = useCallback(async () => {
+    if (appIsReady) {
+      await SplashScreen.hideAsync();
+    }
+  }, [appIsReady]);
+
+  if (!appIsReady) {
+    return null;
   }
 
   return (
     <SafeAreaProvider>
       <ThemeProvider theme={theme}>
         <ReduxProvider store={store}>
-          <RootStack />
+          <Container onLayout={onLayoutRootView}>
+            <RootStack />
+          </Container>
         </ReduxProvider>
       </ThemeProvider>
     </SafeAreaProvider>
   );
 }
+
+const Container = styled.View`
+  flex: 1;
+`;

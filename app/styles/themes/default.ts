@@ -7,3 +7,9 @@ export const defaultTheme = {
     blue: 'blue',
   },
 } as DefaultThemeType;
+
+export const themeFonts = {
+  Regular: 'Gilroy-Regular',
+  SemiBold: 'Gilroy-SemiRegular',
+  Medium: 'Gilroy-Medium',
+};
