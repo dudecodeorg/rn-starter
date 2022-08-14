@@ -26,3 +26,6 @@ jobs:
         run: yarn
       - name: Build on EAS
         run: eas build --non-interactive --platform ios --profile production
+        env:
+          EXPO_APPLE_ID: ${{secrets.EXPO_APPLE_ID}}
+          EXPO_APPLE_ID_PASSWORD: ${{secrets.EXPO_APPLE_ID_PASSWORD}}
