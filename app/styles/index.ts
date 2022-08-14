@@ -2,7 +2,7 @@ import { StyleProp } from 'react-native';
 
 export type Style<T> = StyleProp<T>;
 
-type StyledFn = () => Record<string, any>;
+type StyledFn = () => Record<string, never>;
 
 export const buildStyles = (styleFn: StyledFn) => styleFn();
 

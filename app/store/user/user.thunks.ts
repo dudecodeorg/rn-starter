@@ -14,7 +14,7 @@ export const loginUser = createAsyncThunk('user/login', async (loginFn: () => Pr
   try {
     await loginFn();
   } catch (e) {
-    console.log('Err');
+    console.warn(e);
   }
 });
 

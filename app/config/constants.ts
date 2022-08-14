@@ -3,4 +3,4 @@ export enum StorageKeys {
   RefreshToken = 'RefreshToken',
 }
 
-export const DefaultLocal = 'en'
+export const DefaultLocal = 'en';
