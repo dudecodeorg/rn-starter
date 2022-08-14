@@ -4,6 +4,7 @@ import styled from '../../styles';
 import useAuth from '../../hooks/useAuth';
 import { useAppDispatch } from '../../store';
 import { loginUser } from '../../store/user/user.thunks';
+import { t } from '../../i18n';
 
 function HomeScreen() {
   const dispatch = useAppDispatch();
@@ -15,7 +16,7 @@ function HomeScreen() {
 
   return (
     <Container>
-      <HelloText>Hello, Dude!</HelloText>
+      <HelloText>{t('helloText')}</HelloText>
       <LoginButton onPress={onLoginPress} title="Login" />
     </Container>
   );
