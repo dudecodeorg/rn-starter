@@ -1,10 +1,10 @@
 import React from 'react';
 
-import styled from '../../styles';
 import useAuth from '../../hooks/useAuth';
+import { t } from '../../i18n';
 import { useAppDispatch } from '../../store';
 import { loginUser } from '../../store/user/user.thunks';
-import { t } from '../../i18n';
+import styled from '../../styles';
 
 function HomeScreen() {
   const dispatch = useAppDispatch();

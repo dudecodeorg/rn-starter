@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import User from '../../models/User.type';
 import { fetchUser } from './user.thunks';
 
