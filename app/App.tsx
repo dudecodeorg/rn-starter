@@ -1,11 +1,11 @@
 import { useFonts } from 'expo-font';
 import { useEffect } from 'react';
-import { Text } from 'react-native';
 import { initialWindowMetrics, SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider as ReduxProvider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 
 import { AuthProvider } from './hooks/useAuth';
+import AppRoot from './navigation/AppRoot';
 import { store } from './store/store';
 import { theme } from './styles';
 import 'react-native-gesture-handler';
@@ -15,7 +15,7 @@ type Props = {
   hideSplashScreen: () => Promise<void>;
 };
 
-export default function App({ hideSplashScreen }: Props) {
+function App({ hideSplashScreen }: Props) {
   const [fontsLoaded] = useFonts(fontsToLoad);
   const [iconsLoaded] = useFonts(iconsToLoad);
 
@@ -32,10 +32,12 @@ export default function App({ hideSplashScreen }: Props) {
       <ThemeProvider theme={theme}>
         <ReduxProvider store={store}>
           <AuthProvider>
-            <Text>Hello World!</Text>
+            <AppRoot />
           </AuthProvider>
         </ReduxProvider>
       </ThemeProvider>
     </SafeAreaProvider>
   );
 }
+
+export default App;

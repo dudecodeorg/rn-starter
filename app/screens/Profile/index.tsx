@@ -1,8 +1,9 @@
-import styled from '../../styles';
 import React from 'react';
-import { useAppDispatch } from '../../store';
+
 import useAuth from '../../hooks/useAuth';
+import { useAppDispatch } from '../../store';
 import { logOutUser } from '../../store/user/user.thunks';
+import styled from '../../styles';
 
 function ProfileScreen() {
   const dispatch = useAppDispatch();
