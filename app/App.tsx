@@ -1,62 +1,41 @@
+import { useFonts } from 'expo-font';
+import { useEffect } from 'react';
+import { Text } from 'react-native';
+import { initialWindowMetrics, SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider as ReduxProvider } from 'react-redux';
-import { store } from './store/store';
-import RootStack from './navigation/RootStack';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ThemeProvider } from 'styled-components';
-import styled, { theme } from './styles';
-import * as SplashScreen from 'expo-splash-screen';
-import { useCallback, useEffect, useState } from 'react';
-import useCustomFonts from './hooks/useCustomFonts';
-import useIconFont from './hooks/useIconFont';
+
 import { AuthProvider } from './hooks/useAuth';
-
+import { store } from './store/store';
+import { theme } from './styles';
 import 'react-native-gesture-handler';
+import { fontsToLoad, iconsToLoad } from './styles/themes/default';
 
-SplashScreen.preventAutoHideAsync();
+type Props = {
+  hideSplashScreen: () => Promise<void>;
+};
 
-export default function App() {
-  const [appIsReady, setAppIsReady] = useState(false);
+export default function App({ hideSplashScreen }: Props) {
+  const [fontsLoaded] = useFonts(fontsToLoad);
+  const [iconsLoaded] = useFonts(iconsToLoad);
 
   useEffect(() => {
-    async function prepare() {
-      try {
-        await useCustomFonts();
-        await useIconFont();
-      } catch (e) {
-        console.warn(e);
-      } finally {
-        setAppIsReady(true);
-      }
+    if (fontsLoaded && iconsLoaded) {
+      setTimeout(hideSplashScreen, 500);
     }
+  }, [fontsLoaded, iconsLoaded]);
 
-    prepare();
-  }, []);
-
-  const onLayoutRootView = useCallback(async () => {
-    if (appIsReady) {
-      await SplashScreen.hideAsync();
-    }
-  }, [appIsReady]);
-
-  if (!appIsReady) {
-    return null;
-  }
+  if (!fontsLoaded || !iconsLoaded) return null;
 
   return (
-    <SafeAreaProvider>
+    <SafeAreaProvider initialMetrics={initialWindowMetrics}>
       <ThemeProvider theme={theme}>
         <ReduxProvider store={store}>
           <AuthProvider>
-            <Container onLayout={onLayoutRootView}>
-              <RootStack />
-            </Container>
+            <Text>Hello World!</Text>
           </AuthProvider>
         </ReduxProvider>
       </ThemeProvider>
     </SafeAreaProvider>
   );
 }
-
-const Container = styled.View`
-  flex: 1;
-`;
